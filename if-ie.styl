@@ -1,0 +1,12 @@
+// set the `ie` variable so you'll need only to set it to `true` in `ie.` files
+ie ?= false
+
+// Proxying the vendor functions so they would be there only for IE
+if typeof(border-radius) == 'function'
+  border-radius_old = border-radius
+  border-radius()
+    border-radius_old(arguments) if !ie
+
+// Handy `zoom`, would be visible only for IE
+zoom()
+  zoom: arguments if ie
