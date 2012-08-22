@@ -37,4 +37,4 @@ rgba-ie()
     $fallback = pop(arguments)
 
   return blend($fallback, rgba-proxy(arguments)) if ie
-  return type(arguments[length(arguments) - 1])
+  return rgba-proxy(arguments)
