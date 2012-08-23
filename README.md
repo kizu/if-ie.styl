@@ -118,7 +118,7 @@ border-radius()
 And then you want to use it:
 
 ``` Stylus
-.test1
+.test
   width: 10px
   border-radius: 5px
 ```
@@ -126,7 +126,7 @@ And then you want to use it:
 you would get it's content in modern browsers, but what would IE get? It would get this:
 
 ``` CSS
-.test2 {
+.test {
   width: 10px;
 }
 ```
