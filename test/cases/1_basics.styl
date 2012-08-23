@@ -1,0 +1,13 @@
+@import "../../if-ie"
+
+.test1
+  zoom: 1
+  width: 10px if ie
+  height: 10px if !ie
+
+ie = true
+
+.test2
+  zoom: 1
+  width: 10px if ie
+  height: 10px if !ie

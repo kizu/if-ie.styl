@@ -1,0 +1,17 @@
+{
+  "name": "if-ie.styl",
+  "description": "Stylus way to divide code for IE and other browsers",
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/kizu/if-ie.styl.git"
+  },
+  "devDependencies": {
+      "stylus": "0.29.x"
+    , "mocha": "*"
+    , "should": "*"
+  },
+  "author": "Roman Komarov <kizu@kizu.ru>",
+  "main": "./if-ie.styl",
+  "engines": { "node": "*" }
+}

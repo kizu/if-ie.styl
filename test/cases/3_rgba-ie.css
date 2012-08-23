@@ -1,0 +1,12 @@
+.test1 {
+  color: rgba(0,0,0,0.5);
+  background: rgba(255,255,255,0.5);
+  border-color: rgba(255,255,255,0.7);
+  border-bottom-color: rgba(255,222,0,0.42);
+}
+.test2 {
+  color: #808080;
+  background: #808080;
+  border-color: #fff;
+  border-bottom-color: #7ace38;
+}

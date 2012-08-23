@@ -1,0 +1,8 @@
+.test1 {
+  width: 10px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+.test2 {
+  width: 10px;
+}
