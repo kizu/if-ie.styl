@@ -1,6 +1,6 @@
-# `if-ie.styl` the [Stylus](http://learnboost.github.com/stylus) way to divide code for IE and other browsers
+# The [Stylus](http://learnboost.github.com/stylus) way to divide code for IE and for others
 
-This is basically not a library, but a methodology of splitting the styles for IE and for other browsers. The profits of it are the reduced number of requests — one for each browser, the reduced size of each stylesheet — each browser would get only what it needs, and the faster and easier way to write hacks for  ie. More on the features below.
+`if-ie.styl` is not a library — but a methodology of splitting the styles for IE and for other browsers. The profits of it are the reduced number of requests — one for each browser, the reduced size of each stylesheet — each browser would get only what it needs, and the faster and easier way to write hacks for  ie. More on the features below.
 
 This is the addition to the great CSS Preprocessor [Stylus](http://learnboost.github.com/stylus).
 
@@ -39,7 +39,7 @@ git clone git://github.com/kizu/if-ie.styl.git
 
 ## Usage
 
-Well, the basics of this lib are simple — you can use the `ie` variable in a way, where you could write hacks for it in a main stylesheet and them get two compiled versions — one for all modern browsers and other — only for ie.
+Well, the basics of this lib are simple — you can use the `ie` variable in a way, where you could write hacks for it in a main stylesheet and then get two compiled versions — one for all modern browsers and other — only for ie.
 
 That goes that way:
 
@@ -47,7 +47,7 @@ That goes that way:
 
 2. Then you create the `style_ie.styl` near the main stylesheet with such content:
 
-``` CSS
+    ``` CSS
 @import "if-ie.styl/if-ie"
 ie = true
 @import "style.styl"
@@ -55,9 +55,9 @@ ie = true
 
 3. Compile those `.styl` files to `style.css` and `style_ie.css`.
 
-3. You include your styles like this in HTML's head:
+4. You include your styles like this in HTML's head:
 
-    ``` HTML
+``` HTML
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7,IE=edge" />
 
 <!--[if gt IE 7]><!-->
@@ -67,12 +67,11 @@ ie = true
 <![endif]-->
 ```
 
-    There are two things to mention: 
+There are two things to mention: 
 
-    - The main thing: there are conditional comments that tells each browser to get only one stylesheet. So, basically, we get only one request per browser, even for IE, yay!
-    - I use the meta to convert IE8 to the IE7 mode: IE8 is not ideal and it's much easier to have only one version if IE in testing. Also, IE7 renders CSS strangely faster than IE8. And there are a lot of other things too.
+- The main thing: there are conditional comments that tells each browser to get only one stylesheet. So, basically, we get only one request per browser, even for IE, yay!
+- I use the meta to convert IE8 to the IE7 mode: IE8 is not ideal and it's much easier to have only one version if IE in testing. Also, IE7 renders CSS strangely faster than IE8. And there are a lot of other things too.
 
-4. Profit!
 
 ## Features
 
