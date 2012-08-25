@@ -1,15 +1,18 @@
 // set the `ie` variable so you'll need only to set it to `true` in `ie.` files
 ie ?= false
 
+
 // Proxying the vendor functions so they would be there only for IE
 if typeof(border-radius) == 'function'
   border-radius_old = border-radius
   border-radius()
     border-radius_old(arguments) if !ie
 
+
 // Handy `zoom`, would be visible only for IE
 zoom()
   zoom: arguments if ie
+
 
 // Basic color blending
 blend(color1,color2)
@@ -22,6 +25,7 @@ blend(color1,color2)
   newA = 1 // FIXME: would be smth different if the alpha of color1 != 1
   return rgba(newR,newG,newB,newA)
 
+
 // Proxy for passing the arguments to `rgba`
 // See https://github.com/LearnBoost/stylus/issues/803
 rgba-proxy()
@@ -29,6 +33,7 @@ rgba-proxy()
   return rgba(arguments[0],arguments[1]) if length(arguments) == 2
   return rgba(arguments[0],arguments[1],arguments[2]) if length(arguments) == 3 // In case there'd be such case
   return rgba(arguments[0],arguments[1],arguments[2],arguments[3]) if length(arguments) == 4
+
 
 // rgba-like function with an optional fallback (defaults to #FFF)
 rgba-ie()
@@ -38,3 +43,9 @@ rgba-ie()
 
   return blend($fallback, rgba-proxy(arguments)) if ie
   return rgba-proxy(arguments)
+
+
+// Crossbrowser `rect()` for `clip` property
+rect()
+  return 'rect(%s)' % unquote(join(ie?' ':',', arguments))
+

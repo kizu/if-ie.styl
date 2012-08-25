@@ -1,0 +1,8 @@
+.test1 {
+  clip: rect(0,auto,auto,0);
+  clip: rect(0,auto,300px,2px);
+}
+.test2 {
+  clip: rect(0 auto auto 0);
+  clip: rect(0 auto 300px 2px);
+}
