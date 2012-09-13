@@ -2,6 +2,7 @@
   width: 10px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
+  text-shadow: 0 1px #f00;
 }
 .test2 {
   width: 10px;
