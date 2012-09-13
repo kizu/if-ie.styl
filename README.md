@@ -109,7 +109,7 @@ and you won't get all those styles in the stylesheet for IE! Some bytes saved.
 
 ### Redefining mixins
 
-This is a feature under construction and proof of concept (would land soon), but: with `if-ie.styl` you could use your CSS3 mixins in a way that wouldn't bloat the IE stylesheet. Some extra bytesaving :)
+With `if-ie.styl` you could use your CSS3 mixins in a way that wouldn't bloat the IE stylesheet. Some extra bytesaving here :)
 
 So, if you have such mixin:
 
@@ -135,7 +135,9 @@ you would get it's content in modern browsers, but what would IE get? It would g
 }
 ```
 
-Right now there is only a such redefenition for `border-radius`, in a nearest feature I'd make a lot more, to cover everything from the [nib](https://github.com/visionmedia/nib/) library. Stay tuned.
+Right now almost all of the  [nib](https://github.com/visionmedia/nib/)'s mixins are covered. Also, the `text-shadow` is stripped from IE.
+
+There are still a lot of similar things to do (like removing the vendored gradients in IE etc.), so stay tuned!
 
 ### `rgba-ie()`
 
