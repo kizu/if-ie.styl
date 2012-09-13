@@ -1,0 +1,24 @@
+.test1:nth-child(1) {
+  background: #f00;
+}
+.test1:nth-child(2) {
+  background: #0f0;
+}
+.test1:nth-child(3) {
+  background: #00f;
+}
+.test1:nth-child(4) {
+  background: #008000;
+}
+.test2:first-child {
+  background: #f00;
+}
+:first-child + .test2 {
+  background: #0f0;
+}
+:first-child + * + .test2 {
+  background: #00f;
+}
+:first-child + * + * + .test2 {
+  background: #008000;
+}
