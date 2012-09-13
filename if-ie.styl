@@ -2,13 +2,6 @@
 ie ?= false
 
 
-// Proxying the vendor functions so they would be there only for IE
-if typeof(border-radius) == 'function'
-  border-radius_old = border-radius
-  border-radius()
-    border-radius_old(arguments) if !ie
-
-
 // Handy `zoom`, would be visible only for IE
 zoom()
   zoom: arguments if ie
@@ -49,3 +42,25 @@ rgba-ie()
 rect()
   return 'rect(%s)' % unquote(join(ie?' ':',', arguments))
 
+
+// Simple nth-child helper for IE
+// Inspired by http://codepen.io/scottkellum/pen/isytK
+// No handling of `2n` and `2n + 1` like functions (yet?)
+nth-child(selector, number, offset = 0)
+  if ie and number[1] != n // second check don't throw away the rule, need to find better way.
+    a = ':first-child'
+    if number == 1
+      return unquote(selector) + a
+    for i in (2..number)
+      a = a + ' + ' if i == 2
+      a = a + '* + ' if i > 2
+    return a + unquote(selector)
+  else
+    return '%s:nth-child(%s)' % (unquote(selector) unquote(join('',number)))
+
+
+// Disabling vendor functions in IE, saving bytes.
+// Would work only if `ie` variable would be set _before_ including if-ie.styl`.
+if ie
+  border-radius()
+    // Do nothing in IE

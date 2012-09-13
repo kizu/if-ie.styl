@@ -14,6 +14,7 @@ This is the addition to the great CSS Preprocessor [Stylus](http://learnboost.gi
     - [Redefining mixins](#redefining-mixins)
     - [`rgba-ie()`](#rgba-ie)
     - [clip support](#clip-support)
+    - [simple nth-child support](#simple-nth-child-support)
 
 ## Install
 
@@ -49,10 +50,12 @@ That goes that way:
 2. Then you create the `style_ie.styl` near the main stylesheet with such content:
 
     ``` CSS
-@import "if-ie.styl/if-ie"
 ie = true
+@import "if-ie.styl/if-ie"
 @import "style.styl"
 ```
+
+    Note that `ie = true` must be declared _before_ imports, so [Redefining mixins](#redefining-mixins) would work.
 
 3. Compile those `.styl` files to `style.css` and `style_ie.css`.
 
@@ -200,6 +203,37 @@ would become this in IE:
   clip: rect(0 auto auto 0);
 }
 ```
+
+### Simple `nth-child` support
+
+_feature inspired by [this codepen](http://codepen.io/scottkellum/pen/isytK)_
+
+You can use simple (with generic numbers) `nth-child` that would work in IE. To do this you need to call it in that way:
+
+``` Stylus
+{nth-child(".foo", 3)}
+  background: blue
+```
+
+You can see that the nth-child function goes in the interpolation. The first argument is the selector, the second is the counter of the child. Using the `n` in the counter is not available yet.
+
+This code would produce this in normal browsers:
+
+``` CSS
+.foo:nth-child(3) {
+  background: #00f;
+}
+```
+
+and this in IE:
+
+``` CSS
+:first-child + * + .foo {
+  background: #00f;
+}
+```
+
+As a word of warning: such selectors can be **bad** for performance, so use this nth-child substitution at your own risk!
 
 - - -
 
