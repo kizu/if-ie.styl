@@ -110,7 +110,7 @@ and you won't get all those styles in the stylesheet for IE! Some bytes saved.
 
 ### `inline-block`
 
-Since IE supports `display: inline-block` only for initially inline elements, we `if-ie.styl` provides a transparent mixin to make it work for every element.
+Since IE supports `display: inline-block` only for initially inline elements, `if-ie.styl` provides a transparent mixin to make it work for every element.
 
 So, when you would write `display: inline-block`, IE would get `display: inline; zoom: 1;` everytime. You could say that we won't need it for initially inline blocks, but hey! Look at this:
 
