@@ -2,6 +2,11 @@
 ie ?= false
 
 
+// Method to use a `{lte_ie9}` selector to make styles for either old ie, or for prefixed ie9 class
+ie9_class ?= 'ie9' // set the `ie9_class` in your .styl if you need another class here
+lte_ie9 = ie ? '' : '.' + ie9_class + ' '
+
+
 // Handy `zoom`, would be visible only for IE
 zoom()
   zoom: arguments if ie

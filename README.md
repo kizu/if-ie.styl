@@ -16,6 +16,7 @@ This is the addition to the great CSS Preprocessor [Stylus](http://learnboost.gi
     - [`rgba-ie()`](#rgba-ie)
     - [clip support](#clip-support)
     - [simple nth-child support](#simple-nth-child-support)
+    - [`{lt_ie9}` selector](#lt_ie9-selector)
 
 ## Install
 
@@ -250,6 +251,30 @@ and this in IE:
 ```
 
 As a word of warning: such selectors can be **bad** for performance, so use this nth-child substitution at your own risk!
+
+### `{lte_ie9}` selector
+
+Sometimes you would want to write some styles both for OE9 and for older IE. Since IE9 would get the normal styles, the usual way of doing so would require copy-and-pasting. However, `if-ie.styl` prodides a nice shortcut for doing so: just prepend your rules by `{lte_ie9}` selector! That selector would render to nothing in older IEs, but in styles for normal browsers it would render to the `.ie9` selector instead.
+
+In that way you could use Modernizr, conditional comments or any other way to set that class only in `ie9` and everything would work smoothly.
+
+Sample usage:
+
+``` Stylus
+{lte_ie9}
+  .test
+    width: 10px
+```
+
+Older IE would get just the `.test` selector, while IE9 would get `.ie9 .test`.
+
+You can redefine the class used for determining ie9 by defining the `ie9_class` class before including `if-ie.styl` like this:
+
+``` CSS
+ie9_class = 'IE_9'
+@import "if-ie.styl/if-ie"
+@import "style.styl"
+```
 
 - - -
 
