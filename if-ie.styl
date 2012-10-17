@@ -7,6 +7,21 @@ zoom()
   zoom: arguments if ie
 
 
+// `inline-block` for IE
+// Making it so it won't override previous overrides of `display`
+display_previous = display if type(display) == "function"
+
+display(type, args...)
+  if type == inline-block and ie
+    display: inline args
+    zoom: 1
+  else
+    if type(display_previous) == "function"
+      display_previous(arguments)
+    else
+      display: arguments
+
+
 // Basic color blending
 blend(color1,color2)
   // Only normal blending here for now

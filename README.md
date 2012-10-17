@@ -11,6 +11,7 @@ This is the addition to the great CSS Preprocessor [Stylus](http://learnboost.gi
 3. [Features](#features)
     - [`ie` variable](#ie-variable)
     - [`zoom`](#zoom)
+    - [`inline-block`](#inline-block)
     - [Redefining mixins](#redefining-mixins)
     - [`rgba-ie()`](#rgba-ie)
     - [clip support](#clip-support)
@@ -106,6 +107,19 @@ and you won't get all those styles in the stylesheet for IE! Some bytes saved.
 ### `zoom`
 
 `if-ie.styl` redefined the `zoom` property, so it would show up only in IE. Basic stuff, but now you won't get it for your normal browsers, so you could use it straight away in a regular strylesheet when you need to fix something with it!
+
+### `inline-block`
+
+Since IE supports `display: inline-block` only for initially inline elements, we `if-ie.styl` provides a transparent mixin to make it work for every element.
+
+So, when you would write `display: inline-block`, IE would get `display: inline; zoom: 1;` everytime. You could say that we won't need it for initially inline blocks, but hey! Look at this:
+
+    display:inline-block;
+    display:inline;zoom:1;
+
+The fallback for IE is just 1 (one) extra byte, so it won't make things _that_ bad. Actually, that would make it so your code would be more reusable, 'because you won't need to worry if the element is block level from the start.
+
+Also, `if-ie.styl` overrides the `display` in a way it won't break any other overrides any other plugin could have done to `display`. So you can safely use it with nib or any other set of mixins.
 
 ### Redefining mixins
 
