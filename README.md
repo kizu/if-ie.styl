@@ -16,7 +16,7 @@ This is the addition to the great CSS Preprocessor [Stylus](http://learnboost.gi
     - [`rgba-ie()`](#rgba-ie)
     - [clip support](#clip-support)
     - [simple nth-child support](#simple-nth-child-support)
-    - [`{lt_ie9}` selector](#lt_ie9-selector)
+    - [`{lte_ie9}` selector](#lt_ie9-selector)
 
 ## Install
 
