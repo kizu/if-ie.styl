@@ -1,0 +1,14 @@
+.test1 {
+  display: inline-block;
+}
+.test1__important {
+  display: inline-block !important;
+}
+.test2 {
+  display: inline;
+  zoom: 1;
+}
+.test2__important {
+  display: inline !important;
+  zoom: 1;
+}

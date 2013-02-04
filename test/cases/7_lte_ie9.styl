@@ -1,0 +1,15 @@
+ie9_class ?= 'IE_9'
+@import '../../if-ie'
+
+{lte_ie9}
+  .test1
+    width: 2px
+
+ie = true
+ie9_class ?= 'IE_9'
+@import '../../if-ie'  // For the lte_ie9 overriden, import must be done after setting ie variable
+
+{lte_ie9}
+  .test2
+    width: 2px
+
