@@ -204,6 +204,12 @@ but to this in IE:
 
 Yay, magic! You can try to create a layer with `rgba(255,222,0,0.42)` over a `#19C261` background and then use a colorpicker to see that it's actually the `#7ace38` color!
 
+And, of course, you can redefine the default fallback to any other color using `$default_rgba_fallback` variable:
+
+``` CSS
+$default_rgba_fallback = lime
+```
+
 ### Clip support
 
 `if-ie.styl` adds support for `clip` property, more precisely, for the `rect()` value syntax. The spec says there must be commas between it's arguments, but IE understands only space-separated arguments. So, `if-ie.styl` handles this and you can write your `rect`s like you want — in the result there would be commas for modern browsers and spaces for IE. So, 

@@ -49,8 +49,9 @@ rgba-proxy()
 
 
 // rgba-like function with an optional fallback (defaults to #FFF)
+$default_rgba_fallback ?= #FFF
 rgba-ie()
-  $fallback = #FFF
+  $fallback = $default_rgba_fallback
   if length(arguments) > 1 && type(arguments[length(arguments) - 1]) == "rgba"
     $fallback = pop(arguments)
 
