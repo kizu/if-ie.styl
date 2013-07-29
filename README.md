@@ -1,4 +1,6 @@
-# The [Stylus](http://learnboost.github.com/stylus) way to divide code for IE and for others
+# if-ie.styl [![Build Status](https://travis-ci.org/kizu/if-ie.styl.png)](https://travis-ci.org/kizu/if-ie.styl)
+
+## The [Stylus](http://learnboost.github.com/stylus) way to divide code for IE and for others
 
 `if-ie.styl` is not a library — but a methodology of splitting the styles for IE and for other browsers. The profits of it are the reduced number of requests — one for each browser, the reduced size of each stylesheet — each browser would get only what it needs, and the faster and easier way to write hacks for  ie. More on the features below.
 
