@@ -15,9 +15,9 @@
     "url": "git://github.com/kizu/if-ie.styl.git"
   },
   "devDependencies": {
-      "stylus": "0.35.x"
-    , "mocha": "*"
-    , "should": "*"
+    "stylus": "0.35.x",
+    "mocha": "*",
+    "should": "*"
   },
 
   "scripts": {
