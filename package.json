@@ -8,7 +8,7 @@
   "description": "Stylus way to divide code for IE and other browsers",
   "keywords": [ "stylus", "IE" ],
   "homepage": "https://github.com/kizu/if-ie.styl#readme",
-  "bugs": { "url": "http://github.com/kizu/if-ie/issues" },
+  "bugs": { "url": "http://github.com/kizu/if-ie.styl/issues" },
 
   "repository": {
     "type": "git",
