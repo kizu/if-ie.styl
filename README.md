@@ -1,4 +1,9 @@
-# if-ie.styl [![Build Status](https://travis-ci.org/kizu/if-ie.styl.png?branch=master)](https://travis-ci.org/kizu/if-ie.styl)
+# if-ie.styl [![Build Status][build]][build-link] [![NPM version][version]][version-link]
+[build]: https://travis-ci.org/kizu/if-ie.styl.png?branch=master
+[build-link]: https://travis-ci.org/kizu/if-ie.styl
+[version]: https://badge.fury.io/js/if-ie.styl.png
+[version-link]: http://badge.fury.io/js/if-ie.styl
+
 
 ## The [Stylus](http://learnboost.github.com/stylus) way to divide code for IE and for others
 
