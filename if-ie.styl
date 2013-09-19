@@ -27,30 +27,29 @@ display(type, args...)
       display: arguments
 
 
-// Basic color blending
-blend(color1,color2)
-  // Only normal blending here for now
-  return color2 if alpha(color2) == 1
-  return color1 if alpha(color2) == 0
-  newR = (1 - alpha(color2)) *   red(color1) + alpha(color2) *   red(color2)
-  newG = (1 - alpha(color2)) * green(color1) + alpha(color2) * green(color2)
-  newB = (1 - alpha(color2)) *  blue(color1) + alpha(color2) *  blue(color2)
-  newA = 1 // FIXME: would be smth different if the alpha of color1 != 1
-  return rgba(newR,newG,newB,newA)
-
-
-// Proxy for passing the arguments to `rgba`
-// See https://github.com/LearnBoost/stylus/issues/803
-rgba-proxy()
-  return rgba(arguments) if length(arguments) == 1
-  return rgba(arguments[0],arguments[1]) if length(arguments) == 2
-  return rgba(arguments[0],arguments[1],arguments[2]) if length(arguments) == 3 // In case there'd be such case
-  return rgba(arguments[0],arguments[1],arguments[2],arguments[3]) if length(arguments) == 4
-
-
 // rgba-like function with an optional fallback (defaults to #FFF)
 $default_rgba_fallback ?= #FFF
 rgba-ie()
+  // Proxy for passing the arguments to `rgba`
+  // See https://github.com/LearnBoost/stylus/issues/803
+  rgba-proxy()
+    return rgba(arguments) if length(arguments) == 1
+    return rgba(arguments[0],arguments[1]) if length(arguments) == 2
+    return rgba(arguments[0],arguments[1],arguments[2]) if length(arguments) == 3 // In case there'd be such case
+    return rgba(arguments[0],arguments[1],arguments[2],arguments[3]) if length(arguments) == 4
+
+  // Basic color blending
+  blend(color1,color2)
+    // Only normal blending here for now
+    return color2 if alpha(color2) == 1
+    return color1 if alpha(color2) == 0
+    newR = (1 - alpha(color2)) *   red(color1) + alpha(color2) *   red(color2)
+    newG = (1 - alpha(color2)) * green(color1) + alpha(color2) * green(color2)
+    newB = (1 - alpha(color2)) *  blue(color1) + alpha(color2) *  blue(color2)
+    newA = 1 // FIXME: would be smth different if the alpha of color1 != 1
+    return rgba(newR,newG,newB,newA)
+
+  // Function body
   if type($default_rgba_fallback) == 'rgba'
     $fallback = $default_rgba_fallback
   else if type(contrasting) == 'function'
