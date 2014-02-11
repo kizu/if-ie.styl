@@ -1,6 +1,12 @@
 .IE_9 .test1 {
   width: 2px;
 }
-.test2 {
+.IE_9 .test2 {
+  width: 2px;
+}
+.test1_ie {
+  width: 2px;
+}
+.test2_ie {
   width: 2px;
 }
