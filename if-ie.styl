@@ -27,6 +27,42 @@ display(type, args...)
       display: arguments
 
 
+// Emulating `box-sizing` in IE
+// Could be used only in the same block and after all other box-model props
+// Also, only paddings for now, no borders
+box-sizing_previous = box-sizing if type(box-sizing) == "function"
+
+box-sizing(type, args...)
+  if ie and @padding and (@width or @height)
+    $padding = @padding
+    $minus_width = 0
+    $minus_height = 0
+
+    if length($padding) == 1
+      $minus_width = $padding*2
+      $minus_height = $padding*2
+    else if length($padding) == 2
+      $minus_width = $padding[1]*2
+      $minus_height = $padding[0]*2
+    else if length($padding) == 3
+      $minus_width = $padding[1]*2
+    else if length($padding) == 4
+      $minus_width = $padding[1] + $padding[3] unless (unit($padding[1]) != unit($padding[3]) and $padding[1] > 0 and $padding[3] > 0)
+    if length($padding) > 2
+      $minus_height = $padding[0] + $padding[2] unless (unit($padding[0]) != unit($padding[2]) and $padding[0] > 0 and $padding[2] > 0)
+
+    if @width and unit(@width) == unit($minus_width)
+      width: @width - $minus_width
+    if @height and unit(@height) == unit($minus_height)
+      height: @height - $minus_height
+
+  else
+    if type(box-sizing_previous) == "function"
+      box-sizing_previous(arguments)
+    else
+      box-sizing: arguments
+
+
 // rgba-like function with an optional fallback (defaults to #FFF)
 $default_rgba_fallback ?= #FFF
 rgba-ie()
