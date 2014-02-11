@@ -1,6 +1,6 @@
 {
   "name": "if-ie.styl",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "author": "Roman Komarov <kizmarh@ya.ru> (http://kizu.ru/en/)",
   "licence": "MIT",
   "description": "Stylus way to divide code for IE and other browsers",
