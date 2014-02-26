@@ -2,6 +2,10 @@
 # if-ie.styl Changelog
 ---
 
+## v0.3.1 (2014-02-26)
+
+- Fixed fallback function to use the actual fallback, not the hardcoded function.
+
 ## v0.3.0 (2014-02-11)
 
 - Proper `rgba` for IE!

@@ -94,11 +94,16 @@ rgba()
   // Function body
   if type($default_rgba_fallback) == 'rgba'
     $fallback = $default_rgba_fallback
-  else if type(contrasting) == 'function'
+  else if $default_rgba_fallback == 'contrasting' and type(contrasting) == 'function'
     $argument_for_fallback = clone(arguments)
     if length($argument_for_fallback) > 1 && type($argument_for_fallback[length($argument_for_fallback) - 1]) == "rgba"
       pop($argument_for_fallback)
     $fallback = contrasting(rgba-proxy($argument_for_fallback))
+  else if type($default_rgba_fallback) == 'function'
+    $argument_for_fallback = clone(arguments)
+    if length($argument_for_fallback) > 1 && type($argument_for_fallback[length($argument_for_fallback) - 1]) == "rgba"
+      pop($argument_for_fallback)
+    $fallback = $default_rgba_fallback(rgba-proxy($argument_for_fallback))
   else
     $fallback = #FFF
 
