@@ -6,11 +6,6 @@ ie ?= false
 ie9_class ?= 'ie9' // set the `ie9_class` in your .styl if you need another class here
 lte_ie9 = ie ? '' : '.' + ie9_class + ' '
 
-// Block mixin wrapper for lte-ie9
-lte-ie9()
-  {lte_ie9}
-    {block}
-
 
 // Handy `zoom`, would be visible only for IE
 zoom()
@@ -68,17 +63,16 @@ box-sizing(type, args...)
       box-sizing: arguments
 
 
-// Fallback function with an optional fallback (defaults to #FFF)
+// rgba-like function with an optional fallback (defaults to #FFF)
 $default_rgba_fallback ?= #FFF
-rgba-old = rgba
-rgba()
+rgba-ie()
   // Proxy for passing the arguments to `rgba`
   // See https://github.com/LearnBoost/stylus/issues/803
   rgba-proxy()
-    return rgba-old(arguments) if length(arguments) == 1
-    return rgba-old(arguments[0],arguments[1]) if length(arguments) == 2
-    return rgba-old(arguments[0],arguments[1],arguments[2]) if length(arguments) == 3 // In case there'd be such case
-    return rgba-old(arguments[0],arguments[1],arguments[2],arguments[3]) if length(arguments) == 4
+    return rgba(arguments) if length(arguments) == 1
+    return rgba(arguments[0],arguments[1]) if length(arguments) == 2
+    return rgba(arguments[0],arguments[1],arguments[2]) if length(arguments) == 3 // In case there'd be such case
+    return rgba(arguments[0],arguments[1],arguments[2],arguments[3]) if length(arguments) == 4
 
   // Basic color blending
   blend(color1,color2)
@@ -89,7 +83,7 @@ rgba()
     newG = (1 - alpha(color2)) * green(color1) + alpha(color2) * green(color2)
     newB = (1 - alpha(color2)) *  blue(color1) + alpha(color2) *  blue(color2)
     newA = 1 // FIXME: would be smth different if the alpha of color1 != 1
-    return rgba-old(newR,newG,newB,newA)
+    return rgba(newR,newG,newB,newA)
 
   // Function body
   if type($default_rgba_fallback) == 'rgba'
@@ -112,15 +106,12 @@ rgba()
 
   if alpha($fallback) < 1
     if $fallback != $default_rgba_fallback
-      $fallback = rgba($fallback)
+      $fallback = rgba-ie($fallback)
     else
-      $fallback = rgba($fallback, #FFF)
+      $fallback = rgba-ie($fallback, #FFF)
 
   return blend($fallback, rgba-proxy(arguments)) if ie
   return rgba-proxy(arguments)
-
-// Legacy
-rgba-ie = rgba
 
 
 // Crossbrowser `rect()` for `clip` property
