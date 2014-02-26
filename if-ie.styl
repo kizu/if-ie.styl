@@ -6,6 +6,11 @@ ie ?= false
 ie9_class ?= 'ie9' // set the `ie9_class` in your .styl if you need another class here
 lte_ie9 = ie ? '' : '.' + ie9_class + ' '
 
+// Block mixin wrapper for lte-ie9
+lte-ie9()
+  {lte_ie9}
+    {block}
+
 
 // Handy `zoom`, would be visible only for IE
 zoom()
