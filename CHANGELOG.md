@@ -2,6 +2,10 @@
 # if-ie.styl Changelog
 ---
 
+## v0.4.0 (2014-02-26)
+
+- Rolling back global `rgba` fallback as Stylus have issues :(
+
 ## v0.3.1 (2014-02-26)
 
 - Fixed fallback function to use the actual fallback, not the hardcoded function.
