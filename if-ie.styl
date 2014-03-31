@@ -79,6 +79,15 @@ rgba-ie()
     return rgba(arguments[0],arguments[1],arguments[2]) if length(arguments) == 3 // In case there'd be such case
     return rgba(arguments[0],arguments[1],arguments[2],arguments[3]) if length(arguments) == 4
 
+  // Getting the fallback from the arguments
+  if length(arguments) > 1 && type(arguments[length(arguments) - 1]) == "rgba"
+    $fallback = pop(arguments)
+  else
+    $fallback = $default_rgba_fallback
+
+  // Return rgba as soon as possible when not in IE
+  return rgba-proxy(arguments) if !ie
+
   // Basic color blending
   blend(color1,color2)
     // Only normal blending here for now
@@ -90,33 +99,24 @@ rgba-ie()
     newA = 1 // FIXME: would be smth different if the alpha of color1 != 1
     return rgba(newR,newG,newB,newA)
 
-  // Function body
-  if type($default_rgba_fallback) == 'rgba'
-    $fallback = $default_rgba_fallback
-  else if $default_rgba_fallback == 'contrasting' and type(contrasting) == 'function'
-    $argument_for_fallback = clone(arguments)
-    if length($argument_for_fallback) > 1 && type($argument_for_fallback[length($argument_for_fallback) - 1]) == "rgba"
-      pop($argument_for_fallback)
-    $fallback = contrasting(rgba-proxy($argument_for_fallback))
-  else if type($default_rgba_fallback) == 'function'
-    $argument_for_fallback = clone(arguments)
-    if length($argument_for_fallback) > 1 && type($argument_for_fallback[length($argument_for_fallback) - 1]) == "rgba"
-      pop($argument_for_fallback)
-    $fallback = $default_rgba_fallback(rgba-proxy($argument_for_fallback))
-  else
+  // We can have a contrasting function or take a function as the last argument
+  if $fallback == 'contrasting' and type(contrasting) == 'function'
+    $fallback = contrasting(rgba-proxy(arguments))
+  else if type($fallback) == 'function'
+    $fallback = $fallback(rgba-proxy(arguments))
+
+  // If we still don't have a color as a fallback, ok, white
+  if type($fallback) != 'rgba'
     $fallback = #FFF
 
-  if length(arguments) > 1 && type(arguments[length(arguments) - 1]) == "rgba"
-    $fallback = pop(arguments)
-
+  // If the fallback is transparent, it shouldn't be
   if alpha($fallback) < 1
-    if $fallback != $default_rgba_fallback
+    if $fallback != $default_rgba_fallback and type($default_rgba_fallback == 'rgba')
       $fallback = rgba-ie($fallback)
     else
       $fallback = rgba-ie($fallback, #FFF)
 
-  return blend($fallback, rgba-proxy(arguments)) if ie
-  return rgba-proxy(arguments)
+  return blend($fallback, rgba-proxy(arguments))
 
 
 // Crossbrowser `rect()` for `clip` property

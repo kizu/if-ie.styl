@@ -27,3 +27,15 @@ $default_rgba_fallback = rgba(0,0,0,0.5)
 .test4
   color: rgba-ie(0,0,0,0.5)
   border-color: rgba-ie(#FFF,0.7)
+
+black_or_white($color)
+  if red($color) + green($color) + blue($color) > 384
+    return #000
+  else
+    return #FFF
+
+$default_rgba_fallback = black_or_white
+
+.test5
+  color: rgba-ie(0,0,0,0.5)
+  border-color: rgba-ie(#FFF,0.7)
