@@ -56,7 +56,6 @@ box-sizing(type, args...)
     if length($padding) > 2
       $minus_height = $padding[0] + $padding[2] unless (unit($padding[0]) != unit($padding[2]) and $padding[0] > 0 and $padding[2] > 0)
 
-
     if @width and unit(@width) == unit($minus_width)
       width: @width - $minus_width
     if @height and unit(@height) == unit($minus_height)
