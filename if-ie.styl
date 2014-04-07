@@ -19,7 +19,7 @@ zoom()
 
 // `inline-block` for IE
 // Making it so it won't override previous overrides of `display`
-display_previous = display if type(display) == "function"
+display_previous = display if !display_previous && type(display) == "function"
 
 display(type, args...)
   if type == inline-block and ie
@@ -35,7 +35,7 @@ display(type, args...)
 // Emulating `box-sizing` in IE
 // Could be used only in the same block and after all other box-model props
 // Also, only paddings for now, no borders
-box-sizing_previous = box-sizing if type(box-sizing) == "function"
+box-sizing_previous = box-sizing if !box-sizing_previous && type(box-sizing) == "function"
 
 box-sizing(type, args...)
   if ie and @padding and (@width or @height)
@@ -56,10 +56,16 @@ box-sizing(type, args...)
     if length($padding) > 2
       $minus_height = $padding[0] + $padding[2] unless (unit($padding[0]) != unit($padding[2]) and $padding[0] > 0 and $padding[2] > 0)
 
+
     if @width and unit(@width) == unit($minus_width)
       width: @width - $minus_width
     if @height and unit(@height) == unit($minus_height)
       height: @height - $minus_height
+
+  // Disabling vendor functions in IE, saving bytes.
+  // More information is available in the last page section.
+  else if ie
+    z if 0 // Do nothing in IE
 
   else
     if type(box-sizing_previous) == "function"
@@ -199,8 +205,6 @@ if ie
   perspective-origin()
     z if 0 // Do nothing in IE
   text-size-adjust()
-    z if 0 // Do nothing in IE
-  box-sizing()
     z if 0 // Do nothing in IE
   box-orient()
     z if 0 // Do nothing in IE
