@@ -12,3 +12,6 @@
   display: inline !important;
   zoom: 1;
 }
+.test3 {
+  display: block;
+}
