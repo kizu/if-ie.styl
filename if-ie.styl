@@ -61,10 +61,8 @@ box-sizing(type, args...)
     if @height and unit(@height) == unit($minus_height)
       height: @height - $minus_height
 
-  // Disabling vendor functions in IE, saving bytes.
-  // More information is available in the last page section.
   else if ie
-    z if 0 // Do nothing in IE
+    z if 0 // Do nothing in IE, details in the last section
 
   else
     if type(box-sizing_previous) == "function"
