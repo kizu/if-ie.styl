@@ -2,6 +2,11 @@
 # if-ie.styl Changelog
 ---
 
+## v0.5.1 (2014-04-10)
+
+- Fixed infinite loop for inline-block, #24.
+- Fixed non-working box-sizing, #24.
+
 ## v0.5.0 (2014-03-31)
 
 - Refactored `rgba-ie` to be faster and without infinite loops lol.
