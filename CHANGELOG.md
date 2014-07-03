@@ -2,6 +2,10 @@
 # if-ie.styl Changelog
 ---
 
+## v0.6.0 (2014-07-03)
+
+- Using proper blend from Stylus 0.47.1.
+
 ## v0.5.1 (2014-04-10)
 
 - Fixed infinite loop for inline-block, #24.

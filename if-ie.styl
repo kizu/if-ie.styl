@@ -91,17 +91,6 @@ rgba-ie()
   // Return rgba as soon as possible when not in IE
   return rgba-proxy(arguments) if !ie
 
-  // Basic color blending
-  blend(color1,color2)
-    // Only normal blending here for now
-    return color2 if alpha(color2) == 1
-    return color1 if alpha(color2) == 0
-    newR = (1 - alpha(color2)) *   red(color1) + alpha(color2) *   red(color2)
-    newG = (1 - alpha(color2)) * green(color1) + alpha(color2) * green(color2)
-    newB = (1 - alpha(color2)) *  blue(color1) + alpha(color2) *  blue(color2)
-    newA = 1 // FIXME: would be smth different if the alpha of color1 != 1
-    return rgba(newR,newG,newB,newA)
-
   // We can have a contrasting function or take a function as the last argument
   if $fallback == 'contrasting' and type(contrasting) == 'function'
     $fallback = contrasting(rgba-proxy(arguments))
@@ -119,7 +108,7 @@ rgba-ie()
     else
       $fallback = rgba-ie($fallback, #FFF)
 
-  return blend($fallback, rgba-proxy(arguments))
+  return blend(rgba-proxy(arguments), $fallback)
 
 
 // Crossbrowser `rect()` for `clip` property
