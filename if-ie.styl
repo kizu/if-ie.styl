@@ -74,14 +74,6 @@ box-sizing(type, args...)
 // rgba-like function with an optional fallback (defaults to #FFF)
 $default_rgba_fallback ?= #FFF
 rgba-ie()
-  // Proxy for passing the arguments to `rgba`
-  // See https://github.com/LearnBoost/stylus/issues/803
-  rgba-proxy()
-    return rgba(arguments) if length(arguments) == 1
-    return rgba(arguments[0],arguments[1]) if length(arguments) == 2
-    return rgba(arguments[0],arguments[1],arguments[2]) if length(arguments) == 3 // In case there'd be such case
-    return rgba(arguments[0],arguments[1],arguments[2],arguments[3]) if length(arguments) == 4
-
   // Getting the fallback from the arguments
   if length(arguments) > 1 && type(arguments[length(arguments) - 1]) == "rgba"
     $fallback = pop(arguments)
@@ -89,13 +81,13 @@ rgba-ie()
     $fallback = $default_rgba_fallback
 
   // Return rgba as soon as possible when not in IE
-  return rgba-proxy(arguments) if !ie
+  return rgba(arguments) if !ie
 
   // We can have a contrasting function or take a function as the last argument
   if $fallback == 'contrasting' and type(contrasting) == 'function'
-    $fallback = contrasting(rgba-proxy(arguments))
+    $fallback = contrasting(rgba(arguments))
   else if type($fallback) == 'function'
-    $fallback = $fallback(rgba-proxy(arguments))
+    $fallback = $fallback(rgba(arguments))
 
   // If we still don't have a color as a fallback, ok, white
   if type($fallback) != 'rgba'
@@ -108,7 +100,7 @@ rgba-ie()
     else
       $fallback = rgba-ie($fallback, #FFF)
 
-  return blend(rgba-proxy(arguments), $fallback)
+  return blend(rgba(arguments), $fallback)
 
 
 // Crossbrowser `rect()` for `clip` property
